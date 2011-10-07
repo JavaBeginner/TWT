@@ -19,7 +19,7 @@ package org.twt.objects.servers;
 /** This class encapsulates a single set of
  *  server-id (e.g. de45) and server-URL (e.g. http://de45.die-staemme.de)
  *  
- * @author jb
+ * @author JavaBeginner
  *
  */
 public class Server

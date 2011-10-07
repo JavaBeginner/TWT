@@ -27,7 +27,7 @@ import org.twt.CONSTANTS;
 
 /** Represents a list of {@link Server} objects.
  * 
- * @author jb
+ * @author JavaBeginner
  *
  */
 public class Servers

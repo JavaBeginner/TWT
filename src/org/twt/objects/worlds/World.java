@@ -35,7 +35,7 @@ import org.xml.sax.SAXException;
 /** A container for the world data parsed from the config XML file
  *  you can get from deXX.die-staemme.de/interface.php?func=get_config
  *  
- * @author jb
+ * @author JavaBeginner
  *
  */
 public class World

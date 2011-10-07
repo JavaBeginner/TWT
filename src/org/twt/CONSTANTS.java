@@ -19,7 +19,7 @@ package org.twt;
 /** <p>This class encapsulates constants for the hole toolkit.</p>
  *  <p>All members are immutable.</p>
  *  
- * @author jb
+ * @author JavaBeginner
  *
  */
 public final class CONSTANTS
