@@ -32,27 +32,27 @@ public class TestSnobBuilding
 //        int[][] buildTimeNeeded = {{2, 12, 2506}, {2, 13, 2386}, {2, 14, 2273}, {2, 15, 2165}, {2, 16, 2062}, {2, 17, 1963}, {2, 18, 1870}, {2, 19, 1781}, {2, 20, 1696}};
         int[] totalPoints = {0, 512, 614, 737};
         
-        Snob s = new Snob("Adelshof", 1, 0, 15000, 25000, 10000, 80, 2, 2, 2, 1.17, 40500, 1.2, 512);
+        Building snob = new Building("Adelshof", 1, 0, 15000, 25000, 10000, 80, 2, 2, 2, 1.17, 40500, 1.2, 512);
 
         for (int i=1;i<woodNeeded.length;i++)
         {
-            Assert.assertEquals(woodNeeded[i], s.getWoodNeeded(i));
+            Assert.assertEquals(woodNeeded[i], snob.getWoodNeeded(i));
         }
        
         for (int i=1;i<stoneNeeded.length;i++)
         {
-            Assert.assertEquals(stoneNeeded[i], s.getStoneNeeded(i));
+            Assert.assertEquals(stoneNeeded[i], snob.getStoneNeeded(i));
         }
         
         for (int i=1;i<ironNeeded.length;i++)
         {
-            Assert.assertEquals(ironNeeded[i], s.getIronNeeded(i));
+            Assert.assertEquals(ironNeeded[i], snob.getIronNeeded(i));
         }
         
         for (int i=1;i<popNeededTotal.length;i++)
         {
-            Assert.assertEquals(popNeededTotal[i], s.getPopNeededTotal(i));
-            Assert.assertEquals(popNeededTotal[i] - popNeededTotal[i-1], s.getPopNeeded(i));
+            Assert.assertEquals(popNeededTotal[i], snob.getPopNeededTotal(i));
+            Assert.assertEquals(popNeededTotal[i] - popNeededTotal[i-1], snob.getPopNeeded(i));
         }
         
 //        for (int i=0;i<buildTimeNeeded.length;i++)
@@ -62,8 +62,8 @@ public class TestSnobBuilding
         
         for (int i=1;i<totalPoints.length;i++)
         {
-            Assert.assertEquals(totalPoints[i], s.getTotalPoints(i));
-            Assert.assertEquals(totalPoints[i] - totalPoints[i-1], s.getNewPoints(i));
+            Assert.assertEquals(totalPoints[i], snob.getTotalPoints(i));
+            Assert.assertEquals(totalPoints[i] - totalPoints[i-1], snob.getNewPoints(i));
         }
     }
 

@@ -16,12 +16,12 @@
  */
 package org.twt.objects.villages.buildings;
 
-/** This is the abstract superclass for all buildings. This class provides the common properties and calculations.
+/** This class represents a building with its properties and calculations
  * 
  * @author JavaBeginner
  *
  */
-public abstract class AbstractBuilding
+public class Building
 {
     /** Name of the building */
     private String name;
@@ -82,7 +82,7 @@ public abstract class AbstractBuilding
      * @param buildTimeFactor The increase factor of the build time for this building
      * @param level1Points The points you get for this building at level 1
      */
-    public AbstractBuilding(String name, int maxLevel, int minLevel, int wood, int stone, int iron, int pop, double woodFactor, 
+    public Building(String name, int maxLevel, int minLevel, int wood, int stone, int iron, int pop, double woodFactor, 
                     double stoneFactor, double ironFactor, double popFactor, double buildTime, double buildTimeFactor, int level1Points)
     {
         setName(name);

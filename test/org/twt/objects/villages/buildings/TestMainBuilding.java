@@ -38,38 +38,38 @@ public class TestMainBuilding
         int[] totalPoints = {0, 10, 12, 14, 17, 21, 25, 30, 36, 43, 52, 62, 74, 89, 107, 128, 154, 185, 222, 266, 319,
                              383, 460, 552, 662, 795, 954, 1145, 1374, 1648, 1978};
         
-        Main m = new Main("Hauptgebäude", 30, 1, 90, 80, 70, 5, 1.26, 1.275, 1.26, 1.17, 562.5, 1.2, 10);
+        Building main = new Building("Hauptgebäude", 30, 1, 90, 80, 70, 5, 1.26, 1.275, 1.26, 1.17, 562.5, 1.2, 10);
 
         for (int i=1;i<woodNeeded.length;i++)
         {
-            Assert.assertEquals(woodNeeded[i], m.getWoodNeeded(i));
+            Assert.assertEquals(woodNeeded[i], main.getWoodNeeded(i));
         }
        
         for (int i=1;i<stoneNeeded.length;i++)
         {
-            Assert.assertEquals(stoneNeeded[i], m.getStoneNeeded(i));
+            Assert.assertEquals(stoneNeeded[i], main.getStoneNeeded(i));
         }
         
         for (int i=1;i<ironNeeded.length;i++)
         {
-            Assert.assertEquals(ironNeeded[i], m.getIronNeeded(i));
+            Assert.assertEquals(ironNeeded[i], main.getIronNeeded(i));
         }
         
         for (int i=1;i<popNeededTotal.length;i++)
         {
-            Assert.assertEquals(popNeededTotal[i], m.getPopNeededTotal(i));
-            Assert.assertEquals(popNeededTotal[i] - popNeededTotal[i-1], m.getPopNeeded(i));
+            Assert.assertEquals(popNeededTotal[i], main.getPopNeededTotal(i));
+            Assert.assertEquals(popNeededTotal[i] - popNeededTotal[i-1], main.getPopNeeded(i));
         }
                 
         for (int i=0;i<buildTimeNeeded.length;i++)
         {
-            Assert.assertEquals(buildTimeNeeded[i][1], m.getBuildTimeNeeded(buildTimeNeeded[i][0]));
+            Assert.assertEquals(buildTimeNeeded[i][1], main.getBuildTimeNeeded(buildTimeNeeded[i][0], buildTimeNeeded[i][0]-1));
         }
         
         for (int i=1;i<totalPoints.length;i++)
         {
-            Assert.assertEquals(totalPoints[i], m.getTotalPoints(i));
-            Assert.assertEquals(totalPoints[i] - totalPoints[i-1], m.getNewPoints(i));
+            Assert.assertEquals(totalPoints[i], main.getTotalPoints(i));
+            Assert.assertEquals(totalPoints[i] - totalPoints[i-1], main.getNewPoints(i));
         }
     }
 }

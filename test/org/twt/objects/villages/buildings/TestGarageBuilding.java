@@ -35,38 +35,38 @@ public class TestGarageBuilding
         int[][] buildTimeNeeded = {{2, 12, 2506}, {2, 13, 2386}, {2, 14, 2273}, {2, 15, 2165}, {2, 16, 2062}, {2, 17, 1963}, {2, 18, 1870}, {2, 19, 1781}, {2, 20, 1696}};
         int[] totalPoints = {0, 24, 29, 35, 41, 50, 60, 72, 86, 103, 124, 149, 178, 214, 257, 308};
         
-        Garage g = new Garage("Werkstatt", 15, 0, 300, 240, 260, 8, 1.26, 1.28, 1.26, 1.17, 3750, 1.2, 24);
+        Building garage = new Building("Werkstatt", 15, 0, 300, 240, 260, 8, 1.26, 1.28, 1.26, 1.17, 3750, 1.2, 24);
 
         for (int i=1;i<woodNeeded.length;i++)
         {
-            Assert.assertEquals(woodNeeded[i], g.getWoodNeeded(i));
+            Assert.assertEquals(woodNeeded[i], garage.getWoodNeeded(i));
         }
        
         for (int i=1;i<stoneNeeded.length;i++)
         {
-            Assert.assertEquals(stoneNeeded[i], g.getStoneNeeded(i));
+            Assert.assertEquals(stoneNeeded[i], garage.getStoneNeeded(i));
         }
         
         for (int i=1;i<ironNeeded.length;i++)
         {
-            Assert.assertEquals(ironNeeded[i], g.getIronNeeded(i));
+            Assert.assertEquals(ironNeeded[i], garage.getIronNeeded(i));
         }
         
         for (int i=1;i<popNeededTotal.length;i++)
         {
-            Assert.assertEquals(popNeededTotal[i], g.getPopNeededTotal(i));
-            Assert.assertEquals(popNeededTotal[i] - popNeededTotal[i-1], g.getPopNeeded(i));
+            Assert.assertEquals(popNeededTotal[i], garage.getPopNeededTotal(i));
+            Assert.assertEquals(popNeededTotal[i] - popNeededTotal[i-1], garage.getPopNeeded(i));
         }
         
         for (int i=0;i<buildTimeNeeded.length;i++)
         {
-            Assert.assertEquals(buildTimeNeeded[i][2], g.getBuildTimeNeeded(buildTimeNeeded[i][0], buildTimeNeeded[i][1]));
+            Assert.assertEquals(buildTimeNeeded[i][2], garage.getBuildTimeNeeded(buildTimeNeeded[i][0], buildTimeNeeded[i][1]));
         }
         
         for (int i=1;i<totalPoints.length;i++)
         {
-            Assert.assertEquals(totalPoints[i], g.getTotalPoints(i));
-            Assert.assertEquals(totalPoints[i] - totalPoints[i-1], g.getNewPoints(i));
+            Assert.assertEquals(totalPoints[i], garage.getTotalPoints(i));
+            Assert.assertEquals(totalPoints[i] - totalPoints[i-1], garage.getNewPoints(i));
         }
     }
 
