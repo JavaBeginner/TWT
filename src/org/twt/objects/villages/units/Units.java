@@ -14,13 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.twt.objects.villages.buildings;
+package org.twt.objects.villages.units;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -29,28 +30,29 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+
+import org.twt.CONSTANTS;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-import org.twt.CONSTANTS;
 
-/** Represents a list of {@link Building} objects.
+/** Represents a list of {@link Unit} objects.
  * 
  * @author JavaBeginner
  *
  */
-public class Buildings
+public class Units
 {
-    /** The list to keep the building objects */
-    private List<Building> buildings = new ArrayList<Building>();
+    /** The list to keep the unit objects */
+    private List<Unit> units = new ArrayList<Unit>();
     
-    public Buildings(String serverURL) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException
+    public Units(String serverURL) throws IOException, XPathExpressionException, ParserConfigurationException, SAXException
     {
         InputStream in = null;
         try
         {
-            URL url = new URL(serverURL + "/interface.php?func=get_building_info");
+            URL url = new URL(serverURL + "/interface.php?func=get_unit_info");
             in = url.openStream();
-            parseBuildingConfig(in);
+            parseUnitConfig(in);
         }
         finally
         {
@@ -58,14 +60,14 @@ public class Buildings
         }
     }
     
-    /** Parse the XML building configuration and create {@link Building} objects
+    /** Parse the XML unit configuration and create {@link Unit} objects
      * @param input
      * @throws ParserConfigurationException
      * @throws SAXException
      * @throws IOException
      * @throws XPathExpressionException
      */
-    private void parseBuildingConfig(InputStream input) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException
+    private void parseUnitConfig(InputStream input) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException
     {
         
         
@@ -84,50 +86,49 @@ public class Buildings
         // Create a XPath object
         XPath xpath = xFactory.newXPath();
 
-        for (int i = 0; i < CONSTANTS.BUILDING_NAMES.length; i++)
+        for (int i = 0; i < CONSTANTS.UNIT_NAMES.length; i++)
         {
-            double[] buildingProperties = new double[CONSTANTS.BUILDING_VALUE_NAMES.length];
-            for (int j = 0; j < CONSTANTS.BUILDING_VALUE_NAMES.length; j++)
+            double[] UnitProperties = new double[CONSTANTS.UNIT_VALUE_NAMES.length];
+            for (int j = 0; j < CONSTANTS.UNIT_VALUE_NAMES.length; j++)
             {
-                expr = xpath.compile("/config/" + CONSTANTS.BUILDING_NAMES[i] + "/" + CONSTANTS.BUILDING_VALUE_NAMES[j] + "/text()");  // Compile XPath expression
+                expr = xpath.compile("/config/" + CONSTANTS.UNIT_NAMES[i] + "/" + CONSTANTS.UNIT_VALUE_NAMES[j] + "/text()");  // Compile XPath expression
                 String result = (String) expr.evaluate(doc, XPathConstants.STRING);  // Run the query and get the result
                 if (!result.isEmpty())
                 {
-                    buildingProperties[j] = Double.parseDouble(result);
+                    UnitProperties[j] = Double.parseDouble(result);
                 }
                 else
                 {
-                    buildingProperties[0] = 0;
+                    UnitProperties[0] = 0;
                     break;
                 }
             }
-            if (buildingProperties[0] != 0)  // Test if properties-set was found in xml config 
+            if (UnitProperties[0] != 0)  // Test if properties-set was found in xml config 
             {
-                buildings.add(new Building(CONSTANTS.BUILDING_NAMES[i], (int) buildingProperties[0], (int) buildingProperties[1], (int) buildingProperties[2], (int) buildingProperties[3], (int) buildingProperties[4],
-                        (int) buildingProperties[5], buildingProperties[6], buildingProperties[7], buildingProperties[8], buildingProperties[9],
-                        buildingProperties[10], buildingProperties[11], CONSTANTS.BUILDING_LEVEL_1_POINTS[i]));
+                units.add(new Unit(CONSTANTS.UNIT_NAMES[i], (int) UnitProperties[0], (int) UnitProperties[1], (int) UnitProperties[2], (int) UnitProperties[3], UnitProperties[4],
+                        (int) UnitProperties[5], (int) UnitProperties[6], (int) UnitProperties[7], (int) UnitProperties[8], (int) UnitProperties[9], UnitProperties[10]));
             }
         }
     }
     
-    /** Get the {@link Building} object for the given name
-     * @param name The name of the ´{@link Building}
-     * @return The {@link Building} object, null = no object to the given name found
+    /** Get the {@link Unit} object for the given name
+     * @param name The name of the ´{@link Unit}
+     * @return The {@link Unit} object, null = no object to the given name found
      */
-    public Building getBuilding(String name)
+    public Unit getUnit(String name)
     {
-        Building resultBuilding = null;
+        Unit resultUnit = null;
         
-        for (Building b : buildings)
+        for (Unit u : units)
         {
-            if (name.equals(b.getName()))
+            if (name.equals(u.getName()))
             {
-                resultBuilding = b;
+                resultUnit = u;
                 break;
             }
         }
         
-        return resultBuilding;
+        return resultUnit;
     }
 
 }
